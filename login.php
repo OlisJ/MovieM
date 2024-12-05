@@ -22,7 +22,7 @@
                                 <input type="email" name="email" id="email" class="form-control">
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3">  
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" name="password" id="password" class="form-control">
                             </div>

@@ -1,4 +1,4 @@
-<?php  include "includes/db.php"  session_start(); ?>
+<?php  include "includes/db.php"; session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +15,30 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h2 class="text-center">Login</h2>
+
+                        <?php
+                            if($_SERVER['REQUEST_METHOD'] == $_POST){
+                                $email=$_POST['email'];
+                                $password=$_POST['password'];
+                            
+
+                            $sql= "SELECT * FROM users WHERE email = ?";
+                            $stmt= $pdo->prepare($sql);
+                            $stmt= bindParam(':email',$email);
+                            $stmt->execute(); 
+                            $results= $stmt->get_result();
+                            $user= $results->fetch_assoc();
+                            
+                            if($user && password_verify($password, $user['password'])){
+                                $_SESSION['user_id']=$user['id'];
+                                $_SESSION['role'] = $user['role'];
+                                echo "<div class='alert alert-succesful'>Log in sucessful<a href='index.php'>Go home</a></div>";
+                            }else{
+                                echo"<div class='alert alert-danger'> Invalid email or password</div>";
+                            }
+                        
+                            }
+                        ?>
 
                         <form method="POST">
                             <div class="mb-3">

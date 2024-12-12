@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-5">
@@ -24,7 +24,7 @@
 
                             $sql= "SELECT * FROM users WHERE email = ?";
                             $stmt= $pdo->prepare($sql);
-                            $stmt= bindParam(':email',$email);
+                            $stmt= bindParam('s',$email);
                             $stmt->execute(); 
                             $results= $stmt->get_result();
                             $user= $results->fetch_assoc();

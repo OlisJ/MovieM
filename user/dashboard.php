@@ -37,5 +37,30 @@
     <th>Time</th>
     <th>Status</th>
   </thead>
+  <tbody>
+    <?php
+      if($result->num_row >0){
+        while($row=$result->fetch_assoc()) 
+        echo "<tr>
+          <td>{$row['id']}</td>
+          <td>{$row['title']}</td>
+          <td>{$row['show_data']}</td>
+          <td>{$row['show_time']}</td>
+          <td>{$row['status']}</td>
+
+        </tr>";
+      }else{
+        echo"<tr>
+        <td colspan='5' class=text-center> No bookings found</td>
+        </tr>"
+      }
+    ?>
+  </tbody>
 </table>
 </div>
+
+
+<?php
+
+  include '../includes/footer.php';
+?>
